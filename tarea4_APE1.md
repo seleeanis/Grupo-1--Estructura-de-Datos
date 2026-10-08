@@ -65,16 +65,6 @@ $$
 \frac{80 - 16}{80} = 80\% \text{ de la memoria es metadato (punteros, cabeceras, boxing), no dato útil.}
 $$
 
-### Advertencia sobre el Resultado 2
-
-El 0.38 MB medido **no es el costo real** del enfoque 2. `heapUsed` solo mide el heap gestionado por V8, y el `ArrayBuffer` de un `Float64Array` se reserva **fuera del heap** (memoria externa). Los ~16 MB reales no aparecen en la medición. Para que la evidencia sea rigurosa, se puede agregar al `profiler.js`:
-
-```js
-const { heapUsed, external, arrayBuffers } = process.memoryUsage();
-// Usar (heapUsed + external) o arrayBuffers para el enfoque 2
-```
-
-Con eso se observan ≈ 16 MB para el enfoque 2 frente a ≈ 91 MB del enfoque 1, una diferencia real de unas 5.7 veces, que sigue siendo sustancial. También se puede ejecutar con `node --trace-gc` para ver la latencia del recolector.
 
 ### Relación con el recolector de basura (GC)
 
