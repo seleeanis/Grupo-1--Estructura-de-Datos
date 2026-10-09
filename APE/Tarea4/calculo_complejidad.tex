@@ -1,0 +1,18 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\begin{document}
+\section*{Tarea 4: C\'alculo de complejidad espacial}
+\textbf{Enfoque 2 (Float64Array).} Dos arreglos de $n$ elementos de 8 bytes:
+\[ S_{prim}(n)=2\cdot n\cdot 8 = 16\,n\ \text{bytes} \]
+\[ S_{prim}(10^6)=16\times10^6\ \text{B}=\frac{16\times10^6}{1024^2}\approx 15{,}26\ \text{MB} \]
+
+\textbf{Enfoque 1 (objetos).} Por elemento: 8 B (referencia en el arreglo) + 40 B (objeto: mapa, properties, elements, lat, lng) + $2\cdot16$ B (dos HeapNumber):
+\[ S_{obj}(n)=n\,(8+40+2\cdot16)=80\,n\ \text{bytes} \]
+\[ S_{obj}(10^6)=80\times10^6\ \text{B}\approx 76{,}29\ \text{MB},\qquad \frac{S_{obj}}{S_{prim}}=\frac{80\,n}{16\,n}=5 \]
+
+\textbf{Orden asint\'otico.}
+\[ S_{obj}(n)\in\Theta(n),\quad S_{prim}(n)\in\Theta(n) \]
+Ambas son lineales; difieren en la constante oculta (80 contra 16).
+\end{document}
