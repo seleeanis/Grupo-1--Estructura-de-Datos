@@ -1,0 +1,3 @@
+# [Generador] Iniciando escritura de 1000000 registros...
+# [Generador] Archivo creado en 0.69 segundos.
+# [Generador] Peso físico en disco: 26.86 MB
